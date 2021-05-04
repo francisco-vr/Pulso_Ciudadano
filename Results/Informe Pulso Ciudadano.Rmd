@@ -1,0 +1,54 @@
+---
+title: "**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**"
+subtitle: "**Pamela Jiles, Daniel Jadue y Joaquín lavín**"
+author: "Francisco Villarroel"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+# Introducción 
+
+Este informe pretende ahondar más detalladamente en los elementos centrales que ha dado la última encuesta de ActivaResearch llamada _"Pulso Ciudadano"_. A diferencia de otras encuestas de estudios de mercado, es inédito que por primera vez una consultora privada haya liberado su base de datos, y que en contexto donde las encuestadoras más prestigiosas como la CEP no han realizado sistemáticamente investigaciones- y las que han hecho son bastante mediocres- esta base de datos es un insumo bastante fiable para un análisis de opinión pública lo más acotado posible. El informe hecho por activa research pueden encontrarlo en este link <https://chile.activasite.com/wp-content/uploads/2021/05/Pulso_Ciudadano_ABRIL_Q2.pdf>, y la base de datos pueden encontrarla en el siguiente link: <https://chile.activasite.com/wp-content/uploads/2021/05/BBDD_Pulso-Abril-Q2_.zip>. En lo que respecta a las características metodológicas de levantamiento de información, estas están mejor explicadas en el informe original de la encuesta Pulso Ciudadano y para quienes estén interesados en revisarlas, sugerimos ver el informe original.
+
+La intención de este informe es doble: por un lado entender cuáles son las características y posición política de quienes votan por la diputada Pamela Jiles, a fin de entender a qué tipo de público electoral apunta, y por otro lado entender cuáles son las características de un cuarto grupo, que son los indecisos de votación. El supuesto detrás de esta investigación es que **las características sociales, económicas y políticas de los votantes de cualquiera de los tres candidates que se asemeje al grupo indeciso, tiene más chanches de ir acaparando esos votos**. No tenemos pruebas _pero tampoco dudas__.
+
+## Características socioeconómicas de cada uno de los grupos de votantes
+
+Parte de los elementos esenciales del análisis de los electores son las características sociodemográficas como nivel socioeconómico, sexo, grupo etáreno y nivel educacional. A pesar de que la encuesta no integra una pregunta de este último ámbito, si tenemos los primeros tres. veamos los resultados de cada una de las tablas, desagregadas por candidato.
+
+
+
+```{r voto, echo=FALSE}
+library("haven")
+library("dplyr")
+library("tidyverse")
+library("summarytools")
+```
+
+```{r, carga-base, echo=FALSE}
+tablas <-readRDS("Results/tablas.rds")
+load("Original Data/Pulso_Ciudadano.rds")
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r voto, echo=FALSE, message=FALSE,warning=FALSE,results='asis'}
+
+ctable(voto$SexoRecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown', chisq = T, headings = F)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

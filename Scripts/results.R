@@ -25,6 +25,30 @@ voto <-mutate(voto, PosPol = recode(voto$P13_1, "1" = "Izquierda", "2" = "Centro
                                     "4" = "Centro Derecha", "5" = "Derecha", "6" = "Sin posición política",
                                     "7" = "No sé"))
 
+## Partidario u opositor
+
+voto$P29XPARTIDARIO <-as.numeric(voto$P29XPARTIDARIO)
+
+voto <-filter(voto, P29XPARTIDARIO%in% c(1,2,3))
+
+voto<-mutate(voto, Parti = recode(voto$P29XPARTIDARIO, "1" = "Partidario", "2" = "Opositor", "3" = "Independiente"))
+
+table(voto$Parti)
+
+## Situación Laboral
+
+voto$P69 <- as.numeric(voto$P69)
+
+voto <-mutate(voto, Labor = recode(voto$P69, "1" = "Trabajo presencial", "2" = "Teletrabajo", "3" = "Cesante",
+                                   "4" = "Sólo estudiando", "5" = "Jefe de Hogar", "6" = "Jubilado"))
+
+voto$P162 <-as.numeric(voto$P162)
+
+voto <-filter(voto, P162%in% c(1,2,3))
+voto <-mutate(voto, Moni = recode(voto$P162, "1" = "No alcanza", "2" = "Alcanza justo", "3" = "Alcanza y sobra"))
+
+table(voto$Moni)
+
 ## Niveles de felicidad ##
 
 voto$P15 <-as.numeric(voto$P15)
@@ -55,17 +79,17 @@ EdadPlot <-ggplot(data = subset(voto, !is.na(Edadrec)),
   facet_grid(~Candi)
 plot(EdadPlot)
 
-ggsave(EdadPlot, filename = "resultados/GrafSex.png",
+ggsave(EdadPlot, filename = "Results/EdadPlot.png",
        dpi = 400, width = 8, height = 7)
 
 
 ##Género ##
 
-SexoPlot <-ggplot(data = subset(voto, !is.na(SexoRecod)),
-                 aes(x = factor(SexoRecod),
+SexoPlot <-ggplot(data = subset(voto, !is.na(Candi)),
+                 aes(x = factor(Candi),
                      y = prop.table(stat(count)),
                      weight = PONDERADOR,
-                     fill = factor(Candi),
+                     fill = factor(SexoRecod),
                      label = scales::percent(prop.table(stat(count))))) +
   geom_bar(position = "dodge") + 
   labs(title = "Sexo de votantes",
@@ -79,11 +103,10 @@ SexoPlot <-ggplot(data = subset(voto, !is.na(SexoRecod)),
   scale_y_continuous(labels = scales::percent) + 
   labs(x = 'Sexo', fill = 'Candidato') +
   theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
-        plot.caption = element_text(face = "italic")) +
-  facet_grid(~Candi)
+        plot.caption = element_text(face = "italic"))
 plot(SexoPlot)
 
-ggsave(SexoPlot, filename = "resultados/GrafSex.png",
+ggsave(SexoPlot, filename = "Results/SexoPlot.png",
        dpi = 400, width = 8, height = 7)
 
 #GSE ##
@@ -110,29 +133,45 @@ GSEPlot <-ggplot(data = subset(voto, !is.na(GSERecod)),
   facet_grid(~Candi)
 plot(GSEPlot)
 
-ggsave(GSEPlot, filename = "resultados/GrafSex.png",
+ggsave(GSEPlot, filename = "Results/GSEPlot.png",
        dpi = 400, width = 8, height = 7)
-
-
-##Región##
-
-
-
-## Distrito##
-
-
-
 
 
 # Características laborales -----------------------------------------------
 
-# Situación laboral
+LaborPlot <-ggplot(data = subset(voto, !is.na(Candi)),
+                 aes(x = factor(Candi),
+                     y = prop.table(stat(count)),
+                     weight = PONDERADOR,
+                     fill = factor(Labor),
+                     label = scales::percent(prop.table(stat(count)),2))) +
+  geom_bar(position = "dodge") + 
+  labs(title = "Situación laboral según candidato",
+       x = "GSE", y = "Porcentaje",
+       caption = "Fuente: Elaboración propia, basada en Encuesta Pulso Ciudadano. Segunda Quincena de Abril 2021") +
+  xlab("Candidato") + ylab("Porcentaje") +
+  geom_text(stat = 'count',
+            position = position_dodge(.9), 
+            vjust = -0.5, 
+            size = 4) + 
+  scale_y_continuous(labels = scales::percent) + 
+  labs(x = 'Candidato', fill = 'Situación Laboral') +
+  theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
+        plot.caption = element_text(face = "italic")) +
+  facet_wrap(~Labor, nrow = 2)
+plot(LaborPlot)
 
-LaborPlot <-ggplot(data = subset(voto, !is.na(P5)),
-                  aes(x = factor(P5),
+ggsave(GSEPlot, filename = "Results/LaborPlot.png",
+       dpi = 400, width = 8, height = 7)
+
+
+# Dinero
+
+MoniPlot <-ggplot(data = subset(voto, !is.na(Candi)),
+                  aes(x = factor(Candi),
                       y = prop.table(stat(count)),
                       weight = PONDERADOR,
-                      fill = factor(Candi),
+                      fill = factor(Moni),
                       label = scales::percent(prop.table(stat(count)),2))) +
   geom_bar(position = "dodge") +
   geom_text(stat = 'count',
@@ -142,11 +181,10 @@ LaborPlot <-ggplot(data = subset(voto, !is.na(P5)),
   scale_y_continuous(labels = scales::percent) + 
   labs(x = 'Situación Laboral', fill = 'Candidato') +
   theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
-        plot.caption = element_text(face = "italic")) +
-  facet_wrap(~Candi, nrow = 4)
-plot(LaborPlot)
+        plot.caption = element_text(face = "italic"))
+plot(MoniPlot)
 
-ggsave(EdadPlot, filename = "resultados/GrafSex.png",
+ggsave(EdadPlot, filename = "Results/MoniPlot.png",
        dpi = 400, width = 8, height = 7)
 
 
@@ -172,11 +210,37 @@ PolitPlot <-ggplot(data = subset(voto, !is.na(PosPol)),
   labs(x = 'Posición política', fill = 'Candidato') +
   theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
         plot.caption = element_text(face = "italic")) +
-  facet_wrap(~Candi, nrow = 4)
+  facet_wrap(~Candi)
 plot(PolitPlot)
 
-ggsave(EdadPlot, filename = "resultados/GrafSex.png",
+ggsave(EdadPlot, filename = "Results/PolitPlot.png",
        dpi = 400, width = 8, height = 7)
+
+## Oposición o no a piñera
+
+PartiPlot <-ggplot(data = subset(voto, !is.na(Candi)),
+                   aes(x = factor(Candi),
+                       y = prop.table(stat(count)),
+                       weight = PONDERADOR,
+                       fill = factor(Parti),
+                       label = scales::percent(prop.table(stat(count)),2))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Posición política, según voto de candidatos",
+       x = "Posición Política", y = "Porcentaje",
+       caption = "Fuente: Elaboración propia, basada en Encuesta Pulso Ciudadano. Segunda Quincena de Abril 2021") +
+  geom_text(stat = 'count',
+            position = position_dodge(.9), 
+            vjust = -0.5, 
+            size = 4) + 
+  scale_y_continuous(labels = scales::percent) + 
+  labs(x = 'Posición política', fill = 'Candidato') +
+  theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
+        plot.caption = element_text(face = "italic"))
+plot(PartiPlot)
+
+ggsave(EdadPlot, filename = "Results/PartiPlot.png",
+       dpi = 400, width = 8, height = 7)
+
 
 
 # Problemas de chile ------------------------------------------------------
@@ -292,6 +356,86 @@ HappyPlot <-ggplot(data = subset(voto, !is.na(Felici)),
   facet_wrap(~Candi, nrow = 4)
 plot(HappyPlot)
 
-ggsave(Problem1Plot, filename = "resultados/GrafSex.png",
+ggsave(HappyPlot, filename = "Results/HappyPlot.png",
        dpi = 400, width = 8, height = 7)
 
+
+
+## Tablas con resultados ##
+
+## Sexo de Votantes ##
+
+Sexo<-table(voto$SexoRecod)
+
+SexoCandi <-voto%>%
+  group_by(Candi)%>%
+  summarise(Género = round((prop.table(Sexo)*100),2))
+
+## GSE de votantes ##
+
+GSE <-table(voto$GSERecod)
+
+GSECandi <-voto%>%
+  group_by(Candi)%>%
+  summarise(GSE = round((prop.table(GSE)*100),2))
+
+ctable()
+
+
+
+# Tablas Socioeconómicas ------------------------------------------------------------------
+
+## GSE ###
+
+TablaGSE <-ctable(voto$GSERecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                  chisq = T, headings = F)
+view(TablaGSE)
+
+## Sexo ##
+
+TablaSexo <-ctable(voto$SexoRecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                   chisq = T, headings = F)
+view(TablaSexo)
+
+## Grupo etáreo ##
+
+TablaEdad <-ctable(voto$Edadrec, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                   chisq = T, headings = F)
+view(TablaEdad)
+
+
+
+
+
+# Tablas de situación económica -------------------------------------------
+
+TablaLabor <-ctable(voto$Labor, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                    chisq = T, headings = F)
+
+TablaMoni <-ctable(voto$Moni, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                   chisq = T, headings = F)
+
+# Tablas de posición política ---------------------------------------------
+
+TablaPosPol <-ctable(voto$PosPol, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                     headings = F)
+view(TablaPosPol)
+
+TablaParti <-ctable(voto$Parti, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                    chisq = T, headings = F)
+view(TablaParti)
+
+
+# Tablas de emociones -----------------------------------------------------
+
+
+TablaFelici <-ctable(voto$Felici, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
+                     chisq = T, headings = F)
+view(TablaFelici)
+
+
+#Agrupar tablas y guardarlas
+
+tablas <-list(TablaEdad, TablaGSE, TablaSexo, TablaLabor, TablaMoni, TablaPosPol, TablaParti, TablaFelici)
+
+saveRDS(tablas, file = "Results/tablas.rds")

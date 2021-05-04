@@ -25,21 +25,36 @@ Pulso <- mutate(Pulso, Edadrec = recode(Pulso$Edadrec,"1" = "Centennials","2" = 
                                         "3" = "Gen X", "4" = "Boomers"))
 
 
+## Sexo ##
+
+Pulso$SEXO <-as.numeric(Pulso$SEXO)
+
+Pulso <-mutate(Pulso, SexoRecod = recode(Pulso$SEXO, "1" = "hombre", "2" = "mujer"))
+
+## GSE ##
+
+Pulso$GSE_COD <-as.numeric(Pulso$GSE_COD)
+
+Pulso <-mutate(Pulso, GSERecod = recode(Pulso$GSE_COD, "1" = "C1", "2" = "C2", "3" = "C3",
+                                        "4" = "D", "5" = "E"))
+
 # Revisión de código para ver la adhesión a Jiles
 
-presi <-table(Pulso$P12_COD)
+presi <-table(Pulso$P11_COD)
 
 round((prop.table(presi)*100),1)
 
-freq(Pulso$P12_COD, weights = Pulso$PONDERADOR)
+freq(Pulso$P11_COD, weights = Pulso$PONDERADOR)
 
 #Nueva base sólo con preferencias de jiles
 
-Pulso$P12_COD <-as.numeric(Pulso$P12_COD)
+Pulso$P11_COD <-as.numeric(Pulso$P11_COD)
 class(Pulso$P12_COD)
 jiles <-filter(Pulso, P12_COD==45)
 
 saveRDS(jiles, file = "Original Data/Jiles.rds")
+
+saveRDS(Pulso, file = "Original Data/Pulso_Ciudadano.rds")
 
 
 
