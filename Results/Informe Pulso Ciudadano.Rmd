@@ -1,6 +1,6 @@
 ---
-title: "**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**"
-subtitle: "**Pamela Jiles, Daniel Jadue y Joaquín lavín**"
+title: <center> <h1>"**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**"</h1> </center>
+subtitle: <center> <h2><font size="4.5">**Pamela Jiles, Daniel Jadue, Joaquín lavín y el grupo de _indecisos_**</font></h2></center>
 author:
 - Francisco Villarroel^[Magíster © en Ciencias Sociales (IDEA-USACH, francisco.villarroel@tutanota.com]
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -17,18 +17,24 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
+<br>
+
 # **Introducción** 
 
 Este informe pretende ahondar más detalladamente en los elementos centrales que ha dado la última encuesta de ActivaResearch llamada _"Pulso Ciudadano"_. A diferencia de otras encuestas de estudios de mercado, es inédito que por primera vez una consultora privada haya liberado su base de datos, y que en contexto donde las encuestadoras más prestigiosas como la CEP no han realizado sistemáticamente investigaciones -y las que han hecho resultan bastante mediocres- esta base de datos es un insumo bastante fiable para un análisis de opinión pública lo más acotado posible. El informe hecho por activa research pueden encontrarlo en este [link](https://chile.activasite.com/wp-content/uploads/2021/05/Pulso_Ciudadano_ABRIL_Q2.pdf), y la base de datos pueden encontrarla en el siguiente [link](https://chile.activasite.com/wp-content/uploads/2021/05/BBDD_Pulso-Abril-Q2_.zip). El material de replicación de este estudio puedes encontrarlo [en este link](https://github.com/francisco-vr/Pulso_Ciudadano).
 
+
+
 En lo que respecta a las características metodológicas de levantamiento de información, estas están mejor explicadas en el informe original de la encuesta Pulso Ciudadano y para quienes estén interesados en revisarlas, sugerimos ver el informe original. En términos de análisis de datos, se puntualiza lo siguiente: de los 1184 casos validados en la base de datos original, se filtró a partir de la preferencia electoral de los tres candidatos más competitivos: Pamela Jiles, Daniel Jadue y Joaquín Lavín. Además, se agregó un grupo llamado "indecisos" que son las personas que en la pregunta sobre cuál candidato prefieren para próximo presidente señalaron "no sé". Todos los demás candidatos poco competitivos, así como otras menciones espontáneas y quienes señalan "no sabe/no responde" fueron eliminados, reduciendo la muestra a 532 casos válidos, los cuales fueron ponderados a partir de la variable "PONDERADOR" proporcionada por la encuestadora y explicada en su reporte.
 
+
 La intención de este informe es doble: por un lado entender cuáles son las características y posición política de quienes votan por la diputada Pamela Jiles, a fin de entender a qué tipo de público electoral apunta, y por otro lado entender cuáles son las características de un cuarto grupo, que son los indecisos de votación. El supuesto detrás de esta investigación es que **las características sociales, económicas y políticas de los votantes de cualquiera de los tres candidates que se asemeje al grupo indeciso, tiene más chanches de ir acaparando esos votos**. No tenemos pruebas _pero tampoco dudas_.
+
+<br>
 
 ## **Características socioeconómicas de cada uno de los grupos de votantes**
 
 Parte de los elementos esenciales del análisis de los electores son las características sociodemográficas como nivel socioeconómico, sexo, grupo etáreno y nivel educacional. A pesar de que la encuesta no integra una pregunta de este último ámbito, si tenemos los primeros tres. veamos los resultados de cada una de las tablas, desagregadas por candidato.
-
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -51,10 +57,13 @@ La extracción de clase es un pilar para el entendimiento de los votantes de cad
 
 Observemos los resultados de esta tabla cruzada:
 
+<br>
+
 ```{r tablaGSE, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 tablas[[2]]
 
 ```
+<br>
 
 Esta tabla y las siguientes están diseñadas para ser leídas a partir de la distribución porcentual desagregada _dentro_ del total por cada candidato. Vemos que porcentualmente todos los candidatos (e incluso el grupo de personas que no saben por quien votar) se concentran en el nivel socioeconómico D, siendo Joaquín Lavín el de porcentaje más atenuado en ese sector. Por otra parte, los que sobresalen en esa distirbución son Daniel jadue con 52,3% de sus votantes ubicados en ese sector, pero sobre todo Pamela Jiles con casi un 67% de votantes del estrato D. 
 
@@ -62,10 +71,11 @@ Por otro lado, es interesante puntualizar que en términos socioeconómicos, Tan
 
 Observemos ahora el gráfico que calcula el 100% desde el total de la muestra:
 
-\newline
-\newline
+<br>
 
 ![](GSEPlot.png)
+<br>
+
 Además de observar que tanto jiles y Jadue concentran el 40% de los votantes que además corresponden a las clases bajas como el sector D, es interesante observar un grupo que es el de los que aún no sabe por quien votar. Queda todavía una gran cantidad de personas de clase baja que aún no se deciden (probablemente más jóvenes, donde menos ayudas económicas han llegado) pero sobre todo hay una población dura de la clase más baja en Chile que aún no sabe por quien votará. Este último sector, el de los más pobres, prácticamente no está presente en ninguno de los candidatos competitivos, salvo Pamela Jiles que tiene un 2% del total. Numerosos estudios pŕevios han mostrado el poco interés de los pobres en las elecciones, principalmente por una sensación (bastante certera) de que sus condiciones de vida no cambiarán mucho si van a votar, sin embargo desde el punto de vista de las elecciones, es clave para cualquiera de estos candidatos acercarse más a ese sector y a los que restan de clases más bajas.
 
 
@@ -75,14 +85,15 @@ Desde ya un lustro el feminismo y las luchas por la destrucción del patriarcado
 
 Por esto se hace necesario revisar cómo es la distribución por sexo de cada uno de los candidatos y observar qué diferencias existen. 
 
-\newline
-
+<br>
 
 ```{r tablasexo, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 
 tablas[[3]]
 
 ```
+
+<br>
 
 En esta tabla hay tres cosas principales a destacar. Primero: Tanto Daniel Jadue como Pamela Jiles tienen un alto nivel de masculinización de su voto; esto podría tener una gran cantidad de explicaciones, entre ellas los atributos personales de ambos, pero probablemente también por las características de los "hombres proveedores" que, a partir de una distribución el patricarcado en términos laborales, son ellos los que más dinero tienen en la AFP y salen a trabajar no-domésticamente para dar sustentos en sus familias. Por otro lado Joaquín lavín está muy equilibrado en temas de sexo.
 
@@ -93,10 +104,11 @@ Probablemente la apuesta de algunos candidatos progresistas del Frente Amplio y 
 
 como podemos apreciar en el gráfico que toma cada etiqueta de candidato como una parte del 100% de la muestra, vemos que los hombres tienen un gran nivel de decisión de su voto, y viéndolo en perspectiva, el grupo de indecisos están equilibrados en género, por lo que aún queda mucho por ir a convencer para votación.
 
+<br>
 
 
 ![](SexoPlot.png)
-
+<br>
 
 ### **Grupo Etáreo**
 
@@ -104,11 +116,13 @@ Ahora ¿a quienes llegan más los candidatos en términos de edad? Los grupos ge
 
 En la siguiente tabla cruzada observaremos cómo los grupos etáreos se distribuyen en cada una de las candidaturas:
 
-\newline
+<br>
 
 ```{r tablaEdad, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 tablas[[1]]
 ```
+
+<br>
 
 A pesar de que Pamela Jiles haya hecho una de sus performances como Naruto (y muy mal interpretadas por un Diputado de derecha), uno pensaría que ella es por lejos una de las personas que debería tener cautivos a la gente joven, pero la verdad es que Jiles pareciera tener _nulo interés por los grupos más jóvenes_; en otras palabras, jiles es un eminente fenómeno para personas mayores, con casi la mitad de su votación, y que claramente esto se debe a los procesos de retiros de fondos de las AFP, del cual casi lleva un año. Esto en términos electorales es muy relevante pues se sabe que a mayor edad hay una mayor responsabilidad cívica en ir a votar, por lo que apelar a la gente de mayor edad se produce rapidamente en aumento de preferencia.
 
@@ -118,14 +132,14 @@ Por otro lado joaquín Lavin pareciera ser relativamente homogéneo, pero llama 
 
 Para hablar del último grupo de los que aún no saben, observemos un poco más el gráfico con la totalidad:
 
-\newline
+<br>
 
 ![](EdadPlot.png)
-\newline
+<br>
 
 Podemos señalar que existe aún un "bolsón de votantes" aún indecisos marcados polarmente por las edades: los _Boomers_ (más de 52 años) con un 8% del total de indecisos, y los _Centenialls_ (18 a 21 años) con un 7% de posibles votantes. Sugeriría ponerle atención a estos grupos y y adoptar mecanismos y políticas publicas enfocadas en ellos, sobre todo porque las ayudas económicas y fenómenos como la educación sólo han sabido de humillación para estos sectores, incluídos además la exclusión del proceso constituyente de los más jóvenes.
 
-\newline
+<br>
 
 ## **Situación económica de quienes votan**
 
@@ -133,29 +147,41 @@ Similar a lo que implica la estratificación social y económica según los vota
 
 Analicemos, pues, los datos que dan tanto la tabla como el gráfico.
 
+<br>
+
 ```{r tablaLabo, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 
 tablas[[4]]
 
 ```
 
+<br>
 
 ![](LaborPlot.png)
+<br>
+
 Analistas políticos/electorales de derecha como Gonzalo Müller adscriben a la tesis de que el fenómeno de Pamela Jiles es más bien un fenómeno de clases medias y no de sus _Sin Monea_, sin embargo considerando los GSE y esta información, vemos que son más bien un fenómeno de _trabajadores pobres_: gente que trabaja y/o teletrabaja pero que se mantiene en sectores muy bajos, además de casi un 30% de personas cesantes que votan por ella, el porcentaje más alto de cualquiera de los otros candidatos. En resumen, Müller se equivoca rotundamente.
 
 Por otro lado, Daniel Jadue tiene una distribución que considero "sorpresiva": Una alta cantidad de estudiantes que votarían eventualmente por él (ahí relaciona el nivel educacional del cuál hablaba anteriormente), una porción no menor de cesantes aunque a 10 puntos porcentuales de Jiles; finalmente, más de la mitad de sus votantes se encuentran trabajando y teletrabajando.
 
 Finalmente, sería interesante hipotetizar las diferencias entre teletrabajo v/s trabajo presencial. ¿Significará el trabajo presencial trabajo precarizado? Si es así, Jiles tiene una cantidad importante de votantes de este tipo, haciendo un paralelo entre los "pobres sin educación v/s los pobres ilustrados".
 
+<br>
+
 ```{r tablaMoni, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 
 tablas[[5]]
 
 ```
+<br>
 
 Veamos los totales por todos los candidatos:
 
+<br>
+
 ![](MoniPlot.png)
+<br>
+
 Lo que se puede decir de esta tabla y gráfico, y es algo que resaltaremos después en términos electorales, es que los tipos de votantes de Pamela Jiles y Daniel jadue en este ámbito exhiben una gran similitud. En ambas candidaturas están con muy similares porcentajes la cantidad de personas que llegan "justo" con el dinero a fin de mes, así como personas que sencillamente no alcanzan con el dinero que ganan, lo que se relaciona con lo que anteriormente se señalaba de los sectores de _trabajadores pobres_
 
 
@@ -163,19 +189,22 @@ Lo que se puede decir de esta tabla y gráfico, y es algo que resaltaremos despu
 
 La posición política de las personas que apoyan a ciertos candidatos podría ser un tema baladí en otros períodos de la historia, pero hoy sobre todo especialmente necesario observar de qué manera se identifican políticamente las personas para ver hacia qué sectores el candidato puede crecer, con quienes pueden hacer alianzas y cómo es percibido por la población que no posee dicha ideología.
 
-\newline
+<br>
 
 ```{r tablaPosPol, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 
 tablas[[6]]
 
 ```
-
-
+<br>
 
 Una revisión al gráfico con los totales noes muestra esto:
 
+<br>
+
 ![](PolitPlot.png)
+<br>
+
 Uno de los mitos que se han estado instalando en la prensa (cadem por medio) y en parte de sectores de la concertación es que Pamela Jiles estaría atrayendo un sector importante de votos de derecha. Según nuestra investigación esto no es así, y de hecho sus nichos de identificación política de sus votantes es bastante clara: casi un 70% de personas sin identificación política clase, y un 20% de votantes que se declaran de izquierda. El otro 10% repartido en las otras cuatro tendencias donde no hay mucho másque rescatar.
 
 Es interesante esto pues Daniel Jadue, en términos del espectro ideológico de sus votantes, pareciera ser más conciliador que la propia Jiles, a pesar del anticomunismo construído de hace décadas en el país. Vemos que dentro de sus votantes hay casi un 27% de personas que se declaran de izquierda, y casi un 20% de personas de centro izquierda que votan por él, cuestión inexistente en Jiles. Como contraparte vemos que jadue llega menos a sectores no identificados ideológicamente, sin embargo sigue siendo muy alto y rodea el 50%. Es un candidato ideológicamente claro al igual que una porción importante de sus votantes.
@@ -184,16 +213,23 @@ En el caso de Joaquín lavín es similar a Jiles pero hacia la derecha: casi un 
 
 En resumen, Jiles es la que más independientes tiene, a diferencia de las tesis concertacionistas y de Gamba, no roba muchos votos a la derecha. Por último, Jadue es menos polarizante que Jiles
 
+<br>
 
 ```{r tablaParti, echo=FALSE, message=TRUE,warning=FALSE,results='asis'}
 
 tablas[[7]]
 
 ```
+<br>
 
 Una vista al gráfico nos señala que:
 
+<br>
+
 ![](PartiPlot.png)
+
+<br>
+
 Esta tendencia se confirma en esta pregunta, la cuál está diseñada para señalar que uno es independiente en desmedro a decir que es opositor a Piñera. En este sentido Jiles es la que más personas "independientes" atrae, y Jadue es su absoluto opuesto, siendo una gran cantidad de sus votantes decididos opositores al Gobierno de Piñera.
 
 
@@ -205,12 +241,16 @@ Lamentablemente esta encuesta sólo pregunta por niveles de felicidad habiendo o
 
 Analicemos, pues, el siguiente gráfico:
 
+<br>
+
 ![](HappyPlot.png)
+<br>
+
 Este gráfico en principio podría parecer algo contradictorio en algunos de sus resultados. Primero, los votantes por Pamela Jiles se reparten principalmente entre Muy felices y medianamente felices, pero quizás el único gran elemento que vale la pena analizar son los niveles de "poco feliz" y "nada feliz", pues indica que hay otras emociones que pueden estar con niveles de preponderancia mayores, como enojo, miedo, desesperanza, ansiedad, etc.
 
 De manera unánime, quien lleva las banderas de la poca felicidad son los votantes de Pamela Jiles, quienes acumulan un 8% aproximado entre "nada feliz" y "poco feliz". Se sabe que candidatas radicales que vienen dsde fuera de loss sistemas políticos explotan emociones como la ira para generar reputación y empatía con la ciudadanía. Por otro lado Daniel Jadue es el siguiente que explota esas características, sobre todo por una tendencia discutsiva antipiñerista que toca teclas similares a las de Jiles.
 
-\newline
+<br>
 
 ## **Conclusiones y recomendaciones**
 
