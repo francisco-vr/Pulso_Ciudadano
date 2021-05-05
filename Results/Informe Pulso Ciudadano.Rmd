@@ -1,8 +1,8 @@
 ---
-title: <center> <h1>"**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**"</h1> </center>
+title: <center> <h1>**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**</h1> </center>
 subtitle: <center> <h2><font size="4.5">**Pamela Jiles, Daniel Jadue, Joaquín lavín y el grupo de _indecisos_**</font></h2></center>
 author:
-- Francisco Villarroel^[Magíster © en Ciencias Sociales (IDEA-USACH, francisco.villarroel@tutanota.com]
+- Francisco Villarroel^[Magíster © en Ciencias Sociales (IDEA-USACH), francisco.villarroel@tutanota.com]
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 email: "francisco.villarroel@tutanota.com"
 output: html_document
@@ -292,6 +292,6 @@ Para Daniel Jadue:
 
 * <ins>Seguir explotando la apelación a la juventud</ins> Daniel Jadue tiene una buena llegada con generaciones de mediana edad hacia abajo, mejores que las de Jiles, y tiene chances de seguir mejorando. acompañada de las dos sugerencias anteriores, se debería diseñar una buena campaña en redes sociales para jóvenes no-universitarios. Es un grupo relevante en cantidad pero difícil en votación.
 
+<br>
 
-
-Y por último, para ambos candidatos: **Habiendo análizado la composición de los votantes que los prefieren a Uds, y sólo visto desde esa dimensión, sus votante son tan homologables que bien podría hacerse una primaria entre ambos. **
+Y por último, para ambos candidatos: **Habiendo analizado la composición de los votantes que los prefieren, y sólo visto desde esa dimensión, sus votantes son tan homologables que bien podría hacerse una primaria entre ambos sin perder una gran cantidad de votos**
