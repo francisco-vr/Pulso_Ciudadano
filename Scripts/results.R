@@ -388,19 +388,18 @@ ctable()
 ## GSE ###
 
 TablaGSE <-ctable(voto$GSERecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                  chisq = T, headings = F)
-view(TablaGSE)
+                  headings = F, report.nas = FALSE)
 
 ## Sexo ##
 
 TablaSexo <-ctable(voto$SexoRecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                   chisq = T, headings = F)
+                   chisq = T, headings = F, report.nas = FALSE)
 view(TablaSexo)
 
 ## Grupo etáreo ##
 
 TablaEdad <-ctable(voto$Edadrec, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                   chisq = T, headings = F)
+                   chisq = T, headings = F, report.nas = FALSE)
 view(TablaEdad)
 
 
@@ -410,19 +409,19 @@ view(TablaEdad)
 # Tablas de situación económica -------------------------------------------
 
 TablaLabor <-ctable(voto$Labor, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                    chisq = T, headings = F)
+                    chisq = T, headings = F, report.nas = FALSE)
 
 TablaMoni <-ctable(voto$Moni, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                   chisq = T, headings = F)
+                   chisq = T, headings = F, report.nas = FALSE)
 
 # Tablas de posición política ---------------------------------------------
 
 TablaPosPol <-ctable(voto$PosPol, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                     headings = F)
+                     headings = F, report.nas = FALSE)
 view(TablaPosPol)
 
 TablaParti <-ctable(voto$Parti, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                    chisq = T, headings = F)
+                    chisq = T, headings = F, report.nas = FALSE)
 view(TablaParti)
 
 
@@ -430,7 +429,7 @@ view(TablaParti)
 
 
 TablaFelici <-ctable(voto$Felici, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                     chisq = T, headings = F)
+                     headings = F, report.nas = FALSE)
 view(TablaFelici)
 
 
