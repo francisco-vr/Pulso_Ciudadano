@@ -55,11 +55,17 @@ voto$P15 <-as.numeric(voto$P15)
 voto <-mutate(voto,Felici = recode(voto$P15, "1" = "Nada Feliz", "2" = "Poco Feliz", "3" = "Medianamente feliz",
                                    "4" = "Feliz", "5" = "Muy Feliz"))
 
+## ultimo guardado
+
+saveRDS(voto, file = "Original Data/BBDD_voto.rds")
+
 
 # Caracterización socioeconómica de los cuatro grupos -----------------
 
 
 ##Edades ##
+
+voto$Edadrec <-factor(voto$Edadrec, levels = c("Centennials", "Millennials", "Gen X", "Boomers"))
 
 EdadPlot <-ggplot(data = subset(voto, !is.na(Edadrec)),
                   aes(x = factor(Edadrec),
@@ -110,6 +116,8 @@ ggsave(SexoPlot, filename = "Results/SexoPlot.png",
        dpi = 400, width = 10, height = 7)
 
 #GSE ##
+
+voto$GSERecod <-factor(voto$GSERecod, levels = c("C1", "C2", "C3", "D", "E"))
 
 GSEPlot <-ggplot(data = subset(voto, !is.na(GSERecod)),
                    aes(x = factor(GSERecod),
@@ -194,6 +202,8 @@ ggsave(MoniPlot, filename = "Results/MoniPlot.png",
 
 # Posición política de los votantes ---------------------------------------
 
+voto$PosPol <-factor(voto$PosPol, levels = c("Izquierda", "Centro Izquierda", "Centro", "Centro Derecha", 
+                                             "Derecha", "Sin posición política", "No sé"))
 
 PolitPlot <-ggplot(data = subset(voto, !is.na(PosPol)),
                    aes(x = factor(PosPol),
@@ -338,13 +348,15 @@ ggsave(Problem2Plot, filename = "resultados/GrafSex.png",
 
 # Felicidad ---------------------------------------------------------------
 
+voto$Felici <-factor(voto$Felici, levels = c("Nada Feliz", "Poco Feliz", "Medianamente feliz",
+                                             "Muy Feliz"))
 
 HappyPlot <-ggplot(data = subset(voto, !is.na(Felici)),
-                      aes(x = factor(Felici),
-                          y = prop.table(stat(count)),
-                          weight = PONDERADOR,
-                          fill = factor(Candi),
-                          label = scales::percent(prop.table(stat(count)),2))) +
+                     aes(x = factor(Felici),
+                         y = prop.table(stat(count)),
+                         weight = PONDERADOR,
+                         fill = factor(Candi),
+                         label = scales::percent(prop.table(stat(count)),2))) +
   geom_bar(position = "dodge") +
   labs(title = "Grado de felicidad, según votante",
        x = "Grado de felicidad", y = "Porcentaje",
@@ -362,7 +374,6 @@ plot(HappyPlot)
 
 ggsave(HappyPlot, filename = "Results/HappyPlot.png",
        dpi = 400, width = 10, height = 7)
-
 
 
 ## Tablas con resultados ##
@@ -396,8 +407,7 @@ TablaGSE <-ctable(voto$GSERecod, voto$Candi, prop = "c", weights = voto$PONDERAD
 
 ## Sexo ##
 
-TablaSexo <-ctable(voto$SexoRecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                   chisq = T, headings = F, report.nas = FALSE)
+TablaSexo <-ctable(voto$SexoRecod, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown', headings = F, report.nas = FALSE)
 view(TablaSexo)
 
 ## Grupo etáreo ##
