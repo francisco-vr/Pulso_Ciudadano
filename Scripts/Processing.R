@@ -7,6 +7,7 @@ library("tidyverse")
 library("summarytools")
 
 #cargamos base de datos
+
 Pulso <- read_spss("Original Data/BBDD_Pulso Abril Q2_.sav")
 
 #Selección de variables de interés

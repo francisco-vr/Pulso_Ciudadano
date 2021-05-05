@@ -80,7 +80,7 @@ EdadPlot <-ggplot(data = subset(voto, !is.na(Edadrec)),
 plot(EdadPlot)
 
 ggsave(EdadPlot, filename = "Results/EdadPlot.png",
-       dpi = 400, width = 8, height = 7)
+       dpi = 400, width = 15, height = 7)
 
 
 ##Género ##
@@ -107,7 +107,7 @@ SexoPlot <-ggplot(data = subset(voto, !is.na(Candi)),
 plot(SexoPlot)
 
 ggsave(SexoPlot, filename = "Results/SexoPlot.png",
-       dpi = 400, width = 8, height = 7)
+       dpi = 400, width = 10, height = 7)
 
 #GSE ##
 
@@ -134,7 +134,7 @@ GSEPlot <-ggplot(data = subset(voto, !is.na(GSERecod)),
 plot(GSEPlot)
 
 ggsave(GSEPlot, filename = "Results/GSEPlot.png",
-       dpi = 400, width = 8, height = 7)
+       dpi = 400, width = 15, height = 7)
 
 
 # Características laborales -----------------------------------------------
@@ -161,8 +161,8 @@ LaborPlot <-ggplot(data = subset(voto, !is.na(Candi)),
   facet_wrap(~Labor, nrow = 2)
 plot(LaborPlot)
 
-ggsave(GSEPlot, filename = "Results/LaborPlot.png",
-       dpi = 400, width = 8, height = 7)
+ggsave(LaborPlot, filename = "Results/LaborPlot.png",
+       dpi = 400, width = 12, height = 7)
 
 
 # Dinero
@@ -174,18 +174,21 @@ MoniPlot <-ggplot(data = subset(voto, !is.na(Candi)),
                       fill = factor(Moni),
                       label = scales::percent(prop.table(stat(count)),2))) +
   geom_bar(position = "dodge") +
+  labs(title = "¿Alcanza el dinero que gana hasta fin de mes?",
+       x = "GSE", y = "Porcentaje",
+       caption = "Fuente: Elaboración propia, basada en Encuesta Pulso Ciudadano. Segunda Quincena de Abril 2021") +
   geom_text(stat = 'count',
             position = position_dodge(.9), 
             vjust = -0.5, 
             size = 4) + 
   scale_y_continuous(labels = scales::percent) + 
-  labs(x = 'Situación Laboral', fill = 'Candidato') +
+  labs(x = 'Candidatos', fill = 'Suficiencia de renta') +
   theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
         plot.caption = element_text(face = "italic"))
 plot(MoniPlot)
 
-ggsave(EdadPlot, filename = "Results/MoniPlot.png",
-       dpi = 400, width = 8, height = 7)
+ggsave(MoniPlot, filename = "Results/MoniPlot.png",
+       dpi = 400, width = 10, height = 7)
 
 
 
@@ -213,10 +216,11 @@ PolitPlot <-ggplot(data = subset(voto, !is.na(PosPol)),
   facet_wrap(~Candi)
 plot(PolitPlot)
 
-ggsave(EdadPlot, filename = "Results/PolitPlot.png",
-       dpi = 400, width = 8, height = 7)
+ggsave(PolitPlot, filename = "Results/PolitPlot.png",
+       dpi = 400, width = 15, height = 7)
 
 ## Oposición o no a piñera
+
 
 PartiPlot <-ggplot(data = subset(voto, !is.na(Candi)),
                    aes(x = factor(Candi),
@@ -225,7 +229,7 @@ PartiPlot <-ggplot(data = subset(voto, !is.na(Candi)),
                        fill = factor(Parti),
                        label = scales::percent(prop.table(stat(count)),2))) +
   geom_bar(position = "dodge") +
-  labs(title = "Posición política, según voto de candidatos",
+  labs(title = "Posición ante el Gobierno de Sebatían Piñera, según candidatos al que votaría",
        x = "Posición Política", y = "Porcentaje",
        caption = "Fuente: Elaboración propia, basada en Encuesta Pulso Ciudadano. Segunda Quincena de Abril 2021") +
   geom_text(stat = 'count',
@@ -233,13 +237,13 @@ PartiPlot <-ggplot(data = subset(voto, !is.na(Candi)),
             vjust = -0.5, 
             size = 4) + 
   scale_y_continuous(labels = scales::percent) + 
-  labs(x = 'Posición política', fill = 'Candidato') +
+  labs(x = 'Candidatos', fill = 'Posición ante el Gobierno') +
   theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
         plot.caption = element_text(face = "italic"))
 plot(PartiPlot)
 
-ggsave(EdadPlot, filename = "Results/PartiPlot.png",
-       dpi = 400, width = 8, height = 7)
+ggsave(PartiPlot, filename = "Results/PartiPlot.png",
+       dpi = 400, width = 12, height = 7)
 
 
 
@@ -357,7 +361,7 @@ HappyPlot <-ggplot(data = subset(voto, !is.na(Felici)),
 plot(HappyPlot)
 
 ggsave(HappyPlot, filename = "Results/HappyPlot.png",
-       dpi = 400, width = 8, height = 7)
+       dpi = 400, width = 10, height = 7)
 
 
 
@@ -399,7 +403,7 @@ view(TablaSexo)
 ## Grupo etáreo ##
 
 TablaEdad <-ctable(voto$Edadrec, voto$Candi, prop = "c", weights = voto$PONDERADOR, style = 'rmarkdown',
-                   chisq = T, headings = F, report.nas = FALSE)
+                   headings = F, report.nas = FALSE)
 view(TablaEdad)
 
 
