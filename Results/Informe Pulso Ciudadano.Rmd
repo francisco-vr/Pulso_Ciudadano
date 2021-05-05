@@ -1,7 +1,8 @@
 ---
 title: "**Informe sobre características sociales, económicas y políticas de los electores de los candidatos presidenciales más competentes**"
 subtitle: "**Pamela Jiles, Daniel Jadue y Joaquín lavín**"
-author: "Francisco Villarroel, Magíster © en Ciencias Sociales (IDEA-USACH)"
+author:
+- Francisco Villarroel^[Magíster © en Ciencias Sociales (IDEA-USACH, francisco.villarroel@tutanota.com]
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 email: "francisco.villarroel@tutanota.com"
 output: html_document
